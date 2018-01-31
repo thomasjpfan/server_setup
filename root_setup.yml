@@ -1,0 +1,43 @@
+---
+
+- hosts: root
+  become: true
+  vars:
+    use_local_cache: false
+    deploy_user: deploy
+    deploy_groups: ["docker"]
+    ssh_server_ports: ["3022"]
+    deploy_local_public_key: "{{ private_root }}/ssh_keys/id_deploy.pub"
+    deploy_hashed_password: "{{ deploy_password | password_hash('sha512', deploy_salt)}}"
+    ssh_allow_users: "{{ deploy_user }}"
+    ssh_client_hardening: false
+    sftp_enabled: true
+  vars_files:
+    - "{{ private_root }}/deploy_cred.yml"
+  pre_tasks:
+    - name: Instal apt-cacher
+      blockinfile:
+        path: /etc/apt/apt.conf.d/01proxy
+        create: yes
+        block: |
+          Acquire::HTTP::Proxy "http://apt-cacher:3142";
+          Acquire::HTTPS::Proxy "false";
+      when: use_local_cache
+    - name: Install apt packages
+      apt:
+        name: "{{ item }}"
+        state: present
+        cache_valid_time: 3600
+      with_items:
+        - iproute2
+        - openssh-server
+  tasks:
+    - name: Setup user
+      include_role:
+        name: thomasjpfan.setup-user
+    - name: Harden ssh
+      include_role:
+        name: dev-sec.ssh-hardening
+    - name: Harden os
+      include_role:
+        name: dev-sec.os-hardening

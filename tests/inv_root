@@ -1,0 +1,8 @@
+[root]
+
+api1.server.com ansible_host=tests_api1_1 ansible_python_interpreter=/usr/bin/python3
+api2.server.com ansible_host=tests_api2_1 ansible_python_interpreter=/usr/bin/python
+
+[root:vars]
+ansible_connection=docker
+private_root=tests/private

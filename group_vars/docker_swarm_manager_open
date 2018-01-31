@@ -1,0 +1,4 @@
+---
+
+ufw_general_ports:
+  - { port: "{{ docker_open_port }}", proto: tcp, rule: allow }

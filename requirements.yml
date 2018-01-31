@@ -1,0 +1,20 @@
+---
+
+- src: thomasjpfan.setup-user
+  version: 1.0.4
+- src: dev-sec.ssh-hardening
+  version: 4.4.0
+- src: dev-sec.os-hardening
+  version: 4.3.0
+- src: tersmitten.fail2ban
+  version: v3.2.3
+- src: jnv.unattended-upgrades
+  version: v1.4.0
+- src: geerlingguy.ntp
+  version: 1.5.2
+- src: thomasjpfan.ufw-cluster
+  version: 1.0.4
+- src: thomasjpfan.docker
+  version: 1.0.2
+- src: thomasjpfan.docker-swarm
+  version: 1.0.2

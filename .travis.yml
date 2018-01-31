@@ -1,0 +1,25 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+addons:
+  apt:
+    packages:
+      - docker-ce=18.01.0~ce-0~ubuntu
+
+before_script:
+  - make setup_test
+
+script:
+  - make root_test
+  - make services_test
+
+after_script:
+  - make clean_up

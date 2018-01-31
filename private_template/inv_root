@@ -1,0 +1,10 @@
+[root]
+
+api1.ROOTDNS
+api2.ROOTDNS
+
+[root:vars]
+ansible_user=root
+ansible_port=22
+ansible_python_interpreter=/usr/bin/python3
+private_root=private

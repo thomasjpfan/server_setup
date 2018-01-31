@@ -1,0 +1,9 @@
+[root]
+
+api1.server.com
+api2.server.com
+
+[root:vars]
+ansible_connection=docker
+ansible_python_interpreter=/usr/bin/python3
+private_root=private

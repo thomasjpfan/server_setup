@@ -1,0 +1,53 @@
+---
+
+- hosts: all
+  become: true
+  vars:
+    docker_version: 17.12.0
+    docker_swarm_network_interface: "eth0"
+    fail2ban_services:
+      - name: sshd
+        port: "{{ ansible_port }}"
+        maxretry: 7
+        backend: systemd
+    ufw_general_ports:
+      - { port: "{{ ansible_port }}", rule: allow }
+    ufw_cluster_rules: []
+  tasks:
+    - name: Install fail2ban
+      include_role:
+        name: tersmitten.fail2ban
+    - name: Install unattended-upgrades
+      include_role:
+        name: jnv.unattended-upgrades
+    - name: Install ntp
+      include_role:
+        name: geerlingguy.ntp
+    - name: Install and setup ufw
+      include_role:
+        name: thomasjpfan.ufw-cluster
+  tags:
+    - services
+
+- hosts: docker
+  become: true
+  tasks:
+    - name: Install docker
+      include_role:
+        name: thomasjpfan.docker
+  tags:
+    - docker-install
+
+- hosts: docker
+  become: true
+  tasks:
+    - name: Open docker port
+      include_role:
+        name: thomasjpfan.ufw-cluster
+      tags:
+        - docker-port
+    - name: Setup docker swarm
+      include_role:
+        name: thomasjpfan.docker-swarm
+  tags:
+    - docker-cluster

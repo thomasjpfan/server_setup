@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+PRIVATE_DIR=${PRIVATE_DIR:-"$PWD/private"}
+
+export DOCKER_TLS_VERIFY=1
+export DOCKER_HOST=tcp://api1.ROOTDNS:DOCKER_OPEN_PORT
+export DOCKER_CERT_PATH=$PRIVATE_DIR/certs

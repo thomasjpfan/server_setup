@@ -1,0 +1,13 @@
+---
+
+docker_daemon_json:
+  dns:
+    - "8.8.8.8"
+    - "8.8.4.4"
+  ipv6: false
+ufw_cluster_rules:
+  - { port: 2377, rule: allow, proto: tcp }
+  - { port: 7946, rule: allow, proto: tcp }
+  - { port: 7946, rule: allow, proto: udp }
+  - { port: 4789, rule: allow, proto: udp }
+  - { rule: allow, proto: esp}

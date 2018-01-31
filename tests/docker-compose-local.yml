@@ -1,0 +1,41 @@
+version: "3.4"
+
+services:
+  api1:
+    image: thomasjpfan/ubuntu-python-systemd:16.04-py3
+    privileged: true
+    networks:
+      - ng
+      - all
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    expose:
+      - "3022"
+    hostname: api1.server.com
+  api2:
+    image: thomasjpfan/ubuntu-python-systemd:16.04-py2
+    privileged: true
+    networks:
+      - ng
+      - all
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    expose:
+      - "3022"
+    hostname: api2.server.com
+  runner:
+    image:  thomasjpfan/ansible-docker-runner:docker-18.01.0-ce-py3-ansible-2.4.2.0-lint-3.4.20-testinfra-1.10.1
+    command: sleep 100000000
+    networks:
+      - all
+    volumes:
+      - $PWD:/etc/ansible/roles/role_to_test
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - $PWD/dep_roles:/root/.ansible/roles
+    environment:
+      - ANSIBLE_PLAYBOOK_ARGS=-e use_local_cache=true
+
+networks:
+  ng:
+    external: true
+  all:
