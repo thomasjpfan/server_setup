@@ -18,8 +18,7 @@ before_script:
   - make setup_test
 
 script:
-  - make root_test
-  - make services_test
+  - make both_test
 
 after_script:
   - make clean_up
