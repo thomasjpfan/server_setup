@@ -15,6 +15,6 @@
 - src: thomasjpfan.ufw-cluster
   version: 1.0.4
 - src: thomasjpfan.docker
-  version: 1.0.2
+  version: 1.0.3
 - src: thomasjpfan.docker-swarm
   version: 1.0.2
