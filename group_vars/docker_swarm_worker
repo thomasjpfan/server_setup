@@ -1,0 +1,7 @@
+---
+
+docker_daemon_json:
+  dns:
+    - "8.8.8.8"
+    - "8.8.4.4"
+  ipv6: false

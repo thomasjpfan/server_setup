@@ -1,7 +1,5 @@
 # Secure Server Setup
 
-[![Build Status](https://travis-ci.org/thomasjpfan/server_setup.svg?branch=master)](https://travis-ci.org/thomasjpfan/server_setup)
-
 Set of playbooks that setups a secure server.
 
 ## Setup

@@ -35,17 +35,28 @@
     - name: Install docker
       include_role:
         name: thomasjpfan.docker
+    - name: Open docker ufw port if docker_swarm_manager_open
+      ufw:
+        port: "{{ docker_open_port }}"
+        proto: tcp
+        rule: allow
+      when: "'docker_swarm_manager_open' in group_names"
   tags:
     - docker-install
 
 - hosts: docker
   become: true
+  vars:
+    ufw_cluster_rules:
+      - { port: 2377, rule: allow, proto: tcp }
+      - { port: 7946, rule: allow, proto: tcp }
+      - { port: 7946, rule: allow, proto: udp }
+      - { port: 4789, rule: allow, proto: udp }
+      - { rule: allow, proto: esp}
   tasks:
     - name: Open docker port
       include_role:
         name: thomasjpfan.ufw-cluster
-      tags:
-        - docker-port
     - name: Setup docker swarm
       include_role:
         name: thomasjpfan.docker-swarm
