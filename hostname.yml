@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+    - name: Change hostname
+      hostname:
+        name: "{{ ansible_host }}"
+    - name: Restart docker
+      service:
+        name: docker
+        state: restarted
