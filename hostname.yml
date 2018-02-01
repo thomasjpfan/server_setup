@@ -6,6 +6,9 @@
     - name: Change hostname
       hostname:
         name: "{{ ansible_host }}"
+      notify:
+      - Restart docker
+  handlers:
     - name: Restart docker
       service:
         name: docker
