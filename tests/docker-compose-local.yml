@@ -11,6 +11,7 @@ services:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     expose:
       - "3022"
+      - "2376"
     hostname: api1.server.com
   api2:
     image: thomasjpfan/ubuntu-python-systemd:16.04-py2
