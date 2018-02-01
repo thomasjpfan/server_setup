@@ -8,3 +8,4 @@ ansible_user=root
 ansible_port=22
 ansible_python_interpreter=/usr/bin/python3
 private_root=private
+open_ssh_port=SSH_OPEN_PORT

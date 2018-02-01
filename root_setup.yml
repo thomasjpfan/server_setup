@@ -6,7 +6,7 @@
     use_local_cache: false
     deploy_user: deploy
     deploy_groups: ["docker"]
-    ssh_server_ports: ["3022"]
+    ssh_server_ports: ["{{ open_ssh_port }}"]
     deploy_local_public_key: "{{ private_root }}/ssh_keys/id_deploy.pub"
     deploy_hashed_password: "{{ deploy_password | password_hash('sha512', deploy_salt)}}"
     ssh_allow_users: "{{ deploy_user }}"

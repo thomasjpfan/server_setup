@@ -26,7 +26,9 @@ $(PRIVATE_DIR):
 	$@/inv_deploy
 
 	sed 's/ROOTDNS/$(ROOTDNS)/g' \
-	private_template/inv_root > $@/inv_root
+	private_template/inv_root | \
+	sed 's/SSH_OPEN_PORT/$(SSH_OPEN_PORT)/g' > \
+	$@/inv_root
 
 	sed 's/ROOTDNS/$(ROOTDNS)/g' \
 	private_template/server.json > $@/server.json
