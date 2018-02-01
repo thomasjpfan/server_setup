@@ -10,6 +10,7 @@ ansible_ssh_private_key_file=private/ssh_keys/id_deploy
 ansible_port=SSH_OPEN_PORT
 private_root=private
 docker_open_port=DOCKER_OPEN_PORT
+docker_network_interface="eth0"
 
 [docker_swarm_manager]
 api1.ROOTDNS

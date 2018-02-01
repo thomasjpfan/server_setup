@@ -5,10 +5,12 @@ api2.server.com ansible_host=api2 ansible_python_interpreter=/usr/bin/python ans
 
 [deploy:vars]
 ansible_ssh_private_key_file=tests/private/ssh_keys/id_deploy
-open_ssh_port=3022
+ansible_port=3022
 ansible_ssh_common_args="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 private_root=tests/private
 docker_open_port=2376
+docker_network_interface="eth0"
+docker_version=17.12.0
 
 [docker_swarm_manager]
 api1.server.com

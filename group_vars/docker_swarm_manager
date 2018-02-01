@@ -5,7 +5,7 @@ docker_local_tlscert: "{{ private_root }}/docker/docker.pem"
 docker_local_tlskey: "{{ private_root }}/docker/docker-key.pem"
 docker_daemon_json:
   hosts:
-    - "tcp://{{ ansible_hostname }}:{{ docker_open_port }}"
+    - "tcp://{{vars['ansible_' + 'docker_network_interface']['ipv4']['address']}}:{{ docker_open_port }}"
   dns:
     - "8.8.8.8"
     - "8.8.4.4"
