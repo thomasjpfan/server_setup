@@ -58,5 +58,7 @@
     - name: Setup docker swarm
       include_role:
         name: thomasjpfan.docker-swarm
+      tags:
+        - docker-swarm
   tags:
     - docker-cluster
