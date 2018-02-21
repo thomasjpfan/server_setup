@@ -3,16 +3,25 @@ set -e
 
 PRIVATE_DIR=${PRIVATE_DIR:-"private"}
 
-root_setup() {
-	cmd="ansible-playbook -i $PRIVATE_DIR/inv_root $* root_setup.yml"
+run_playbook() {
+	playbook="$1"
+	shift 1
+
+	cmd="ansible-playbook -i $PRIVATE_DIR/inv_root $* $playbook"
 	echo "$cmd"
 	$cmd
 }
 
+root_setup() {
+	run_playbook "root_setup.yml" "$@"
+}
+
 install_services() {
-	cmd="ansible-playbook -i $PRIVATE_DIR/inv_deploy $* install_services.yml"
-	echo "$cmd"
-	$cmd
+	run_playbook "install_services.yml" "$@"
+}
+
+hostname() {
+	run_playbook "hostname.yml" "$@"
 }
 
 requirements() {
@@ -26,6 +35,7 @@ usage() {
 	echo "  root: Runs root setup"
 	echo "  services: Install services"
 	echo "  require: Install requirements"
+	echo "  hostname: Change hostname to ansible_host"
 	exit 1
 }
 
@@ -44,6 +54,9 @@ case "$cmd" in
 		;;
 	require)
 		requirements "$args"
+		;;
+	hostname)
+		hostname "$args"
 		;;
 	*)
 		usage

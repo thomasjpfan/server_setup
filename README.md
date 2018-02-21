@@ -10,11 +10,11 @@ Set of playbooks that setups a secure server.
 1. Create a private directory using `make create_private_dir` and install `cfssl`.
 1. Go into private directory and run `make all`.
 1. Encrypt `deploy_cred.yml` and certs in private directory using `ansible vault`.
-1. Symlink your private directory to this directory with the directory name `private`.
 1. Run `ansible-galaxy install -r requirements.yml`
 1. Install requirements `./cli.sh require`
 1. Setup root hosts `./cli.sh root -l api1.server.com -k`
 1. Setup services `./cli.sh services`
+1. Update hostname if necessary `./cli.sh hostname`.
 
 After setting up the private directory, it should be encrypted. This repo does not contain any keys to access your hosts.
 
