@@ -7,21 +7,25 @@ run_playbook() {
 	playbook="$1"
 	shift 1
 
-	cmd="ansible-playbook -i $PRIVATE_DIR/inv_root $* $playbook"
+	cmd="ansible-playbook -e private_root=$PRIVATE_DIR $* $playbook"
 	echo "$cmd"
 	$cmd
 }
 
 root_setup() {
-	run_playbook "root_setup.yml" "$@"
+	run_playbook "root_setup.yml" -i $PRIVATE_DIR/inv_root "$@"
 }
 
 install_services() {
-	run_playbook "install_services.yml" "$@"
+	run_playbook "install_services.yml" -i $PRIVATE_DIR/inv_deploy "$@"
 }
 
 hostname() {
-	run_playbook "hostname.yml" "$@"
+	run_playbook "hostname.yml" -i $PRIVATE_DIR/inv_deploy"$@"
+}
+
+ping() {
+	ansible -i $PRIVATE_DIR/inv_deploy -m ping all
 }
 
 requirements() {
@@ -36,6 +40,7 @@ usage() {
 	echo "  services: Install services"
 	echo "  require: Install requirements"
 	echo "  hostname: Change hostname to ansible_host"
+	echo "  ping: Ping servers"
 	exit 1
 }
 
@@ -57,6 +62,9 @@ case "$cmd" in
 		;;
 	hostname)
 		hostname "$args"
+		;;
+	ping)
+		ping "$args"
 		;;
 	*)
 		usage

@@ -62,3 +62,13 @@
         - docker-swarm
   tags:
     - docker-cluster
+
+- hosts: docker
+  vars_files:
+    - "{{ private_root }}/deploy_cred.yml"
+  tasks:
+    - name: Install rexray plugin
+      include_role:
+        name: thomasjpfan.rexray-s3fs
+  tags:
+    - docker-rexray-plugin
