@@ -17,6 +17,6 @@
 - src: thomasjpfan.docker
   version: 1.0.3
 - src: thomasjpfan.docker-swarm
-  version: 1.0.2
+  version: 1.0.3
 - src: thomasjpfan.rexray-s3fs
   version: 1.0.0
