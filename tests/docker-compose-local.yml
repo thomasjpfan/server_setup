@@ -25,7 +25,7 @@ services:
       - "3022"
     hostname: api2.server.com
   runner:
-    image:  thomasjpfan/ansible-docker-runner:docker-18.01.0-ce-py3-ansible-2.4.2.0-lint-3.4.20-testinfra-1.10.1
+    image: thomasjpfan/ansible-docker-runner:1.1.0-docker-18.06.0-ce-py3
     command: sleep 100000000
     networks:
       - all
