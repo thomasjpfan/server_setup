@@ -9,6 +9,7 @@
     ufw_general_ports:
       - { port: "{{ ansible_port }}", rule: allow }
     ufw_cluster_rules: []
+    unattended_remove_unused_dependencies: true
   tasks:
     - name: Install fail2ban
       include_role:

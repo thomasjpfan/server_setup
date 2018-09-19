@@ -3,7 +3,7 @@
 - src: dev-sec.ssh-hardening
   version: 5.0.0
 - src: dev-sec.os-hardening
-  version: 5.0.0
+  version: 4.3.0
 - src: oefenweb.fail2ban
   version: v3.2.12
 - src: jnv.unattended-upgrades
@@ -13,6 +13,6 @@
 - src: thomasjpfan.ufw-cluster
   version: 1.0.4
 - src: thomasjpfan.docker
-  version: 1.0.3
+  version: 1.0.5
 - src: thomasjpfan.docker-swarm
   version: 1.0.3
