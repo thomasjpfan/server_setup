@@ -10,7 +10,6 @@ Set of playbooks that setups a secure server.
 1. Create a private directory using `make create_private_dir` and install `cfssl`.
 1. Go into private directory and run `make all`.
 1. Encrypt `deploy_cred.yml` and certs in private directory using `ansible vault`.
-1. Run `ansible-galaxy install -r requirements.yml`
 1. Install requirements `./cli.sh require`
 1. Setup root hosts `./cli.sh root -l api1.server.com -k`
 1. Setup services `./cli.sh services`
@@ -20,9 +19,9 @@ After setting up the private directory, it should be encrypted. This repo does n
 
 ## Troubleshooting
 
-1. *`api1.server.com` is down, I must use another manager to run the docker daemon!*: Remove `api1.server.com` from the `docker_swarm_manager_open` group and add a working host to the group. Then run `./cli.services -l api2.server.com -t docker-port`. Update `docker.sh` with the new `DOCKER_HOST`.
+1. _`api1.server.com` is down, I must use another manager to run the docker daemon!_: Remove `api1.server.com` from the `docker_swarm_manager_open` group and add a working host to the group. Then run `./cli.services -l api2.server.com -t docker-port`. Update `docker.sh` with the new `DOCKER_HOST`.
 
-2. *I want to add another server to the docker swarm*: Add the server into `inv_root` and `inv_deploy`. Run `./cli.sh root -l api2.server.com`, `./cli.sh services -l api2.server.com -t "services,docker-install"`, and `./cli.sh services -t "docker-cluster"`.
+2. _I want to add another server to the docker swarm_: Add the server into `inv_root` and `inv_deploy`. Run `./cli.sh root -l api2.server.com`, `./cli.sh services -l api2.server.com -t "services,docker-install"`, and `./cli.sh services -t "docker-cluster"`.
 
 ## Local Testing
 

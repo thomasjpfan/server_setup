@@ -51,22 +51,22 @@ if [ "$#" -gt 1 ]; then
 	args="$*"
 fi
 case "$cmd" in
-	root)
-		root_setup "$args"
-		;;
-	services)
-		install_services "$args"
-		;;
-	require)
-		requirements "$args"
-		;;
-	hostname)
-		hostname "$args"
-		;;
-	ping)
-		ping "$args"
-		;;
-	*)
-		usage
-		;;
+root)
+	root_setup "$args"
+	;;
+services)
+	install_services "$args"
+	;;
+require)
+	requirements "$args"
+	;;
+hostname)
+	hostname "$args"
+	;;
+ping)
+	ping "$args"
+	;;
+*)
+	usage
+	;;
 esac
