@@ -1,5 +1,3 @@
----
-
 - hosts: all
   become: true
   vars:
@@ -14,7 +12,7 @@
   tasks:
     - name: Install fail2ban
       include_role:
-        name: tersmitten.fail2ban
+        name: oefenweb.fail2ban
     - name: Install unattended-upgrades
       include_role:
         name: jnv.unattended-upgrades
@@ -50,7 +48,7 @@
       - { port: 7946, rule: allow, proto: tcp }
       - { port: 7946, rule: allow, proto: udp }
       - { port: 4789, rule: allow, proto: udp }
-      - { rule: allow, proto: esp}
+      - { rule: allow, proto: esp }
   tasks:
     - name: Open docker port
       include_role:
@@ -62,13 +60,3 @@
         - docker-swarm
   tags:
     - docker-cluster
-
-# - hosts: docker
-#   vars_files:
-#     - "{{ private_root }}/deploy_cred.yml"
-#   tasks:
-#     - name: Install rexray plugin
-#       include_role:
-#         name: thomasjpfan.rexray-s3fs
-#   tags:
-#     - docker-rexray-plugin
