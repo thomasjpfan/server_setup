@@ -5,3 +5,4 @@ docker_daemon_json:
     - "8.8.8.8"
     - "8.8.4.4"
   ipv6: false
+  iptables: false
