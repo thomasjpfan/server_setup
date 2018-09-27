@@ -6,6 +6,7 @@
         port: "{{ ansible_port }}"
         maxretry: 7
         backend: systemd
+    fail2ban_loglevel: "INFO"
     ufw_general_ports:
       - { port: "{{ ansible_port }}", rule: allow }
     ufw_cluster_rules: []
